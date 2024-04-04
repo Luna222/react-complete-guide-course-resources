@@ -6,22 +6,23 @@ const content = [
     "React is extremely popular",
     "It makes building complex, interactive UIs a breeze",
     "It's powerful & flexible",
-    "It has a very active and versatile ecosystem"
+    "It has a very active and versatile ecosystem",
   ],
   [
     "Components, JSX & Props",
     "State",
     "Hooks (e.g., useEffect())",
-    "Dynamic rendering"
+    "Dynamic rendering",
   ],
   [
     "Official web page (react.dev)",
     "Next.js (Fullstack framework)",
-    "React Native (build native mobile apps with React)"
-  ]
+    "React Native (build native mobile apps with React)",
+  ],
 ];
 
 export default function App() {
+  //buttons controller: create dynamic React managed variables
   const [activeContentIndex, setActiveContentIndex] = useState(0);
 
   return (
@@ -53,6 +54,12 @@ export default function App() {
             onClick={() => setActiveContentIndex(2)}
           >
             Related Resources
+          </button>
+          <button
+            className={activeContentIndex === 3 ? "active" : ""}
+            onClick={() => setActiveContentIndex(3)} //❗️0-based
+          >
+            React: First Edit
           </button>
         </menu>
         <div id="tab-content">
