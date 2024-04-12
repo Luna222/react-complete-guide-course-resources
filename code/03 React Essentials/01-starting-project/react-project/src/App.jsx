@@ -107,6 +107,26 @@ function MyButton() {
 /*
   👀 MyCounter Component can accepts an Object as an argument and extracted the 'count' property from it using object destructuring ({ count }): function MyCounter({ count }) {}
 */
+function Description({ count, onClick }) {
+  return (
+    <p>
+      <span style={{ color: '#a61e4d', fontWeight: 'bold' }} onClick={onClick}>
+        {count} (click me ♥️)
+      </span>
+      <br></br>
+      <br></br>
+      <a href="https://react.dev/learn#sharing-data-between-components">
+        Sharing data between Components
+      </a>{' '}
+      to make diff Components display the SAME 'count' and update TOGETHER{' '}
+      <span style={{ color: '#5f3dc4' }}>
+        by “lifting state up” — move the state (props/state vars like 'count'
+        changes) from the individual Components “upwards” to the closest
+        Component containing all of them (Parent Component)
+      </span>
+    </p>
+  );
+}
 
 /*
 📌 [🌸 props Object] (standing for "properties")
@@ -114,7 +134,7 @@ function MyButton() {
   
   💚 it allows you to pass data (attributes) from a Parent Component to its Child Component:
     (
-      「when you use a Child/Inner Component in Parent Component's JSX code」:
+      「🕰 when you use a Child/Inner Component in Parent Component's JSX code」:
         --> 👍 can pass 'attributes=data' into the Component tag
         --> ❗️These attributes are then accessible within the Child Component through the props object
 
@@ -213,9 +233,24 @@ function ProfileKath() {
 function Map() {
   /*
   🔸useEffect(setupFn, dependencies<Array>) Hook >>: 
-    👍 allows you to perform side effects in Functional Components, fetching data with Effects for your Component, etc
+    💚 allows you to perform side effects in Functional Components: fetching data with Effects for your Component, connecting to an external system , or Wrapping Effects in custom Hooks, etc
 
-    📌 It runs after every render and can be used for tasks like fetching data w/ Effects, connecting to an external system , or Wrapping Effects in custom Hooks, etc
+    📌 Every ✨reactive value used by your Effect’s code can be declared as a Dependency in Dependency List
+      [✨reactive values]: include props and all variables and functions declared directly inside of your Component. 
+
+    👉 passing reactive Dependencies:
+      📍Passing a dependency array [a, b, ...]: (⭐️)
+        >> If you specify the Dependencies<Array>, your Effect runs ❗️after the initial render and after re-renders with changed dependencies.
+        ==> 👍 If your Effect’s code doesn’t use any ✨reactive values, its Dependency List should be empty ([])
+
+      📍Passing an empty dependency array []: (⭐️)
+        >> If your Effect truly doesn’t use any reactive values, it will ❗️ONLY run after the initial render 
+        & will ❌ NOT re-run when any of your Component’s props or state change.
+
+      📍Passing no dependency array at all:
+        >> If you pass no dependency array at all, your Effect runs ❗️after every single render (and re-render) of your Component.
+
+    🔗 Visit for more: https://react.dev/reference/react/useEffect#specifying-reactive-dependencies
   */
 }
 
@@ -234,6 +269,8 @@ function App() {
   /*
   👉 Using [🌸 Custom Hook]:
     ❗️'useCounter' Hook helps us STORE and UPDATE our state variable (count)
+
+    ❗️increment, decrement are eventHandlerFns
   */
   const [count, increment, decrement] = useCounter(0, 1);
 
@@ -252,10 +289,15 @@ function App() {
         </a>
       </div>
       {/* <h1>Vite + React</h1> */}
+
+      {/* 👉 nest MyButton Component into another component (App): */}
       {/* 👉 Conditional rendering */}
-      {count <= 5 ? <ProfileHedy /> : <ProfileKath />}
+      {count <= 7 ? <ProfileHedy /> : <ProfileKath />}
       <div className="card">
         <div className="flex">
+          <div className="mr-1" style={{ width: '350px' }}>
+            <Description count={count} onClick={increment} />
+          </div>
           <div className="mr-1">
             {/* <button onClick={() => setCount(count => count + 1)}>
               count is {count}
@@ -271,7 +313,6 @@ function App() {
               decreCount={decrement}
             />
           </div>
-          {/* 👉 nest MyButton Component into another component (App) */}
           <div>
             <MyButton />
           </div>
