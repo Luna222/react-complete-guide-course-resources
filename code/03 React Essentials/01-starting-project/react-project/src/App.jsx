@@ -1,6 +1,8 @@
 /*
 💚 Vite Bundler/Build Tool will automatically find the path to these Modules (e.g. react) & import them (this works for ES6 & CommonJS Modules)*/
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
+import Map from './component_modules/Map.jsx';
+import Weather from './component_modules/Weather.jsx';
 
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -115,7 +117,10 @@ function Description({ count, onClick }) {
       </span>
       <br></br>
       <br></br>
-      <a href="https://react.dev/learn#sharing-data-between-components">
+      <a
+        href="https://react.dev/learn#sharing-data-between-components"
+        style={{ background: '#f1f3f5' }}
+      >
         Sharing data between Components
       </a>{' '}
       to make diff Components display the SAME 'count' and update TOGETHER{' '}
@@ -154,13 +159,13 @@ function MyCounter(props) {
       {/* <p>Count: {props.count}</p> */}
       <button
         onClick={props.increCount}
-        style={{ color: '#a61e4d', background: '#f3f0ff' }}
+        style={{ color: '#a61e4d', background: 'var(--bg_secondary)' }}
       >
         +
       </button>
       <button
         onClick={props.decreCount}
-        style={{ color: '#a61e4d', background: '#f3f0ff' }}
+        style={{ color: '#a61e4d', background: 'var(--bg_secondary)' }}
       >
         -
       </button>
@@ -230,28 +235,75 @@ function ProfileKath() {
   );
 }
 
-function Map() {
-  /*
-  🔸useEffect(setupFn, dependencies<Array>) Hook >>: 
-    💚 allows you to perform side effects in Functional Components: fetching data with Effects for your Component, connecting to an external system , or Wrapping Effects in custom Hooks, etc
+function Cities() {
+  const firstCityRef = useRef(null);
+  const secondCityRef = useRef(null);
+  const thirdCityRef = useRef(null);
 
-    📌 Every ✨reactive value used by your Effect’s code can be declared as a Dependency in Dependency List
-      [✨reactive values]: include props and all variables and functions declared directly inside of your Component. 
+  function handleScrollToFirstCity() {
+    firstCityRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }
 
-    👉 passing reactive Dependencies:
-      📍Passing a dependency array [a, b, ...]: (⭐️)
-        >> If you specify the Dependencies<Array>, your Effect runs ❗️after the initial render and after re-renders with changed dependencies.
-        ==> 👍 If your Effect’s code doesn’t use any ✨reactive values, its Dependency List should be empty ([])
+  function handleScrollToSecondCity() {
+    secondCityRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }
 
-      📍Passing an empty dependency array []: (⭐️)
-        >> If your Effect truly doesn’t use any reactive values, it will ❗️ONLY run after the initial render 
-        & will ❌ NOT re-run when any of your Component’s props or state change.
+  function handleScrollToThirdCity() {
+    thirdCityRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }
 
-      📍Passing no dependency array at all:
-        >> If you pass no dependency array at all, your Effect runs ❗️after every single render (and re-render) of your Component.
-
-    🔗 Visit for more: https://react.dev/reference/react/useEffect#specifying-reactive-dependencies
-  */
+  return (
+    <>
+      <nav className="mt-1">
+        <button className="mr-1" onClick={handleScrollToFirstCity}>
+          Hanoi
+        </button>
+        <button className="mr-1" onClick={handleScrollToSecondCity}>
+          Ho Chi Minh
+        </button>
+        <button className="mr-1" onClick={handleScrollToThirdCity}>
+          Hoi An
+        </button>
+      </nav>
+      <div>
+        <ul className="city-list">
+          <li>
+            <img
+              src="https://www.travellingking.com/wp-content/uploads/2023/02/Hanoi-The-urban-development-of-capital-Hanoi-Vietnam-with-large-beside-lakes-west-skyscraper-architecture-.jpg"
+              alt="hn"
+              ref={firstCityRef}
+            />
+          </li>
+          <li>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/DJI_0550-HDR-Pano.jpg/800px-DJI_0550-HDR-Pano.jpg"
+              alt="hcm"
+              ref={secondCityRef}
+            />
+          </li>
+          <li>
+            <img
+              src="https://hoianfoodtour.com/wp-content/uploads/2018/06/boat-trip-along-Bach-Dang-River-river.jpg"
+              alt="ha"
+              ref={thirdCityRef}
+            />
+          </li>
+        </ul>
+      </div>
+    </>
+  );
 }
 
 /*
@@ -265,6 +317,7 @@ class Welcome extends React.Component {
 
 function App() {
   // const [count, setCount] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(0);
 
   /*
   👉 Using [🌸 Custom Hook]:
@@ -291,10 +344,22 @@ function App() {
       {/* <h1>Vite + React</h1> */}
 
       {/* 👉 nest MyButton Component into another component (App): */}
-      {/* 👉 Conditional rendering */}
-      {count <= 7 ? <ProfileHedy /> : <ProfileKath />}
+      <div className="flex">
+        {/* 👉 Conditional rendering */}
+        <div className="mr-5">
+          {count <= 7 ? <ProfileHedy /> : <ProfileKath />}
+        </div>
+        <div>
+          Zoom level: {zoomLevel}x
+          <button onClick={() => setZoomLevel(zoomLevel + 1)}>+</button>
+          <button onClick={() => setZoomLevel(zoomLevel - 1)}>-</button>
+          <hr />
+          <Map zoomLevel={zoomLevel} />
+        </div>
+      </div>
+
       <div className="card">
-        <div className="flex">
+        <div className="flex divider">
           <div className="mr-1" style={{ width: '350px' }}>
             <Description count={count} onClick={increment} />
           </div>
@@ -316,6 +381,25 @@ function App() {
           <div>
             <MyButton />
           </div>
+        </div>
+
+        <div style={{ padding: '1rem 0', background: 'var(--bg_secondary)' }}>
+          <a
+            className="mt-1"
+            href="https://react.dev/learn/manipulating-the-dom-with-refs"
+            style={{ fontWeight: 'bold' }}
+          >
+            ⭐️ Manipulating the DOM with Refs && <br />
+          </a>
+          <a
+            className="mt-1"
+            href="https://react.dev/reference/react/useEffect#fetching-data-with-effects"
+            style={{ fontWeight: 'bold' }}
+          >
+            ⭐️ fetching data with Effects from API for your Component
+          </a>
+          <Cities />
+          <Weather />
         </div>
 
         <p>

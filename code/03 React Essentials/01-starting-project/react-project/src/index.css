@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -11,6 +13,23 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --bg_main: #83e1f6;
+  --bg_secondary: #f3f0ff;
+  --bg_ternary: #e3fafc;
+  --text_light: #fff;
+  --text_med: #53627c;
+  --text_dark: #1e2432;
+  --red: #ff1e42;
+  --darkred: #c3112d;
+  --orange: #ff8c00;
+
+  --color1: #c8dae6;
+  --color2: white;
+  --color3: #495057;
+  --color4: #ffcd41;
+  --color5: #2092a9;
+  --color6: #868e96;
 }
 
 a {
@@ -35,6 +54,10 @@ h1 {
   line-height: 1.1;
 }
 
+h3 {
+  color: var(--color6);
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -54,8 +77,47 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+input {
+  border: none;
+  background: none;
+  outline: none;
+  color: inherit;
+}
+
+.city-list img {
+  /* display: block; */
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+}
+
+ul.city-list {
+  list-style: none;
+  padding: 0;
+}
+
 .avatar {
   border-radius: 50%;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 3rem;
+  letter-spacing: 0.02em;
+  padding: 0 0 30px 0;
+}
+
+.divider {
+  border-bottom: 2.5px solid rgba(206, 212, 218, 0.6);
+  padding-bottom: 1rem;
+}
+
+.bg-grey {
+  background-color: #f1f3f5;
+}
+
+.color-blue {
+  color: var(--color5);
 }
 
 .flex {
@@ -71,81 +133,9 @@ button:focus-visible {
   margin-right: 1rem;
 }
 
-/*___________Weather Widget_________*/
-.weather-wrapper {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+.mr-5 {
+  margin-right: 5rem;
 }
-
-.weather-card {
-  margin: 20px 5px;
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 370px;
-  background-color: var(--color2);
-  box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
-  animation: appear 500ms ease-out forwards;
-  padding: 2rem 1.2rem;
-
-  h1 {
-    /* position: absolute; */
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 58px;
-    color: var(--color3);
-    /* top: 5rem; */
-    /* left: 35px; */
-  }
-
-  p {
-    /* position: absolute; */
-    font-family: 'Lato', sans-serif;
-    font-weight: 380;
-    font-size: 28px;
-    color: lighten(var(--color3), 10%);
-    /* left: 35px; */
-  }
-
-  ul {
-    font-size: 1rem;
-  }
-}
-
-.condition {
-  position: absolute;
-  font-size: 1.2rem !important;
-  bottom: 2rem;
-}
-
-.country {
-  color: #fdfdfd;
-  background-color: #ff8c00;
-  font-size: 0.75rem;
-  padding: 0.2rem;
-  border-radius: 20px;
-  padding: 0.5rem;
-}
-
-@keyframes appear {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  75% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-/*___________End Weather Widget_________*/
 
 @media (prefers-color-scheme: light) {
   :root {
