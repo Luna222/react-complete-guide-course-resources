@@ -108,14 +108,14 @@ The key attribute serves as a unique identifier for each item in the list. React
 function MyComponent() {
   useEffect(() => {
     // Perform setup tasks, data fetching, or subscriptions to services
-    // ❗️This code will run after the component has rendered
+    // ❗️This code will run after the component has rendered/mounted
 
     // Cleanup tasks (optional)
     return () => {
       // Unsubscribe from services or cancel ongoing operations
       // This code will run before the component is unmounted or updated
     };
-  }, []); // Empty dependency array to mimic componentDidMount
+  }, []); // Empty dependency array ensures that the effect runs only once during mounting
 
   // Render component UI
   return (
