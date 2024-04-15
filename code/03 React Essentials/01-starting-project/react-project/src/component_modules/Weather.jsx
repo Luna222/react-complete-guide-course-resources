@@ -9,7 +9,9 @@ export default function Weather() {
   const formRef = useRef(null);
 
   const fetchData = () => {
-    //❗️ref.current ~ DOM Element of Browser API
+    /*
+    ❗️ref.current ~ DOM Element of Browser API when you attached 'ref' attribute to a inner Web Component in JSX
+    */
     const city = inputRef.current?.value
       ? inputRef.current?.value.trim().toLowerCase()
       : 'hanoi';
@@ -51,7 +53,7 @@ export default function Weather() {
           <input
             type="text"
             placeholder="Search for a city"
-            ref={inputRef}
+            ref={inputRef} //❗️inputRef.current = this built-in input Component (DOM Element)
             autoFocus
           />
           <button type="submit" onClick={handleClick}>
