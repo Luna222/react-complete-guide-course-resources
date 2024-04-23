@@ -1,14 +1,18 @@
 /*
 💚 Vite Bundler/Build Tool will automatically find the path to these Modules (e.g. react) & import them (this works for ES6 & CommonJS Modules)*/
-import React, { useState, useRef } from 'react';
-import Map from './component_modules/Map.jsx';
-import Weather from './component_modules/Weather.jsx';
+import React, { useState, useRef } from 'react'; //👉 import Namespaces (React, Map,...) & Modules
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+import Map from './components/Map.jsx';
+import Weather from './components/Weather.jsx';
+import Expenses from './pages/Expenses/Expense.jsx';
+import Demo from './pages/Demo/Demo.jsx';
 
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
-let myCount = 0;
+// let myCount = 0;
 
 const user1 = {
   name: 'Hedy Lamarr',
@@ -182,7 +186,9 @@ function ProfileHedy() {
 
   return (
     <>
-      <h1>{user1.name}</h1>
+      <header>
+        <h1>{user1.name}</h1>
+      </header>
       <Welcome />
       <img
         className="avatar"
@@ -213,7 +219,9 @@ function ProfileKath() {
 
   return (
     <>
-      <h1>{user2.name}</h1>
+      <header>
+        <h1>{user2.name}</h1>
+      </header>
       <Welcome />
       <img
         className="avatar"
@@ -306,31 +314,22 @@ function Cities() {
   );
 }
 
-/*
-《 👉 Create [🌸 React Class Components]》:
-*/
-class Welcome extends React.Component {
-  render() {
-    return <h3>Hello! 🌻</h3>;
-  }
-}
-
-function App() {
+function Home() {
   // const [count, setCount] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(0);
 
   /*
-  👉 Using [🌸 Custom Hook]:
-    ❗️'useCounter' Hook helps us STORE and UPDATE our state variable (count)
-
-    ❗️increment, decrement are eventHandlerFns
-  */
+    👉 Using [🌸 Custom Hook]:
+      ❗️'useCounter' Hook helps us STORE and UPDATE our state variable (count)
+  
+      ❗️increment, decrement are eventHandlerFns
+    */
   const [count, increment, decrement] = useCounter(0, 1);
 
   /*
-  👉 React renders Component to UI:
-    📌 React Component CANNOT return *multiple JSX tags. You have to wrap them into a shared parent, like a <div>...</div> or an empty <>...</> wrapper
-  */
+    👉 React renders Component to UI:
+      📌 React Component CANNOT return *multiple JSX tags. You have to wrap them into a shared parent, like a <div>...</div> or an empty <>...</> wrapper
+    */
   return (
     <>
       <div>
@@ -349,6 +348,40 @@ function App() {
         <div className="mr-5">
           {count <= 7 ? <ProfileHedy /> : <ProfileKath />}
         </div>
+        <div
+          className="flex mr-5"
+          style={{
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+          }}
+        >
+          {/* ❗️Anytime we link to an internal path, we will use <Link> instead of <a href="">. */}
+          <Link
+            to="expenses"
+            style={{
+              color: '#f7f7f7',
+              fontWeight: 'bold',
+              backgroundColor: '#b197fc',
+              padding: '1rem',
+              borderRadius: '2rem',
+            }}
+          >
+            💸 Check out Expenses
+          </Link>
+          <Link
+            to="demo"
+            className="mt-1"
+            style={{
+              color: '#f7f7f7',
+              fontWeight: 'bold',
+              backgroundColor: 'var(--color5)',
+              padding: '1rem',
+              borderRadius: '2rem',
+            }}
+          >
+            🌻 Check out Demo
+          </Link>
+        </div>
         <div>
           Zoom level: {zoomLevel}x
           <button onClick={() => setZoomLevel(zoomLevel + 1)}>+</button>
@@ -365,13 +398,13 @@ function App() {
           </div>
           <div className="mr-1">
             {/* <button onClick={() => setCount(count => count + 1)}>
-              count is {count}
-            </button> */}
+            count is {count}
+          </button> */}
             <button onClick={increment}>count is {count}</button>
 
-            {/* ❗️Pass Component's Properties as attributes:
-            --> these attributes can be accessible within the Child Component (MyCounter) through the [🌸 props object] 
-            --> ⭐️ these attributes become MyCounter Component's Properties */}
+            {/* ❗️Pass Component's Properties as attributes from Parent Component (Home):
+          --> these attributes can be accessible within the Child Component (MyCounter) through the [🌸 props object] 
+          --> ⭐️ these attributes become MyCounter Component's Properties */}
             <MyCounter
               count={count}
               increCount={increment}
@@ -410,6 +443,27 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
+  );
+}
+
+/*
+《 👉 Create [🌸 React Class Components]》:
+*/
+class Welcome extends React.Component {
+  render() {
+    return <h3>Hello! 🌻</h3>;
+  }
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="expenses" element={<Expenses />} />
+        <Route path="demo" element={<Demo />} />
+      </Routes>
+    </Router>
   );
 }
 

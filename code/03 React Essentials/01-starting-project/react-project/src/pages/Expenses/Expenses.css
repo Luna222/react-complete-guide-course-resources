@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+.page-wrapper-expense {
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.5;
+
+  color: #ebe7ef;
+  background-color: #4b4b4b;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  min-height: 50rem;
+
+  /*👉 make the .pageWrapper element occupy the full screen/viewport */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.expenses {
+  /* padding: 1rem;
+  background-color: rgb(31, 31, 31);
+  margin: 2rem auto;
+  width: 50rem;
+  max-width: 95%;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25); */
+}
