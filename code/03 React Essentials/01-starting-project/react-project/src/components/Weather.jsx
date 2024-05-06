@@ -24,7 +24,7 @@ export default function Weather() {
         const arrData = Object.entries(resData).map(([key, value]) => ({
           [key]: value,
         }));
-        setData([arrData]);
+        setData([arrData]); //✨should set to a fixed value
       })
       .catch(err => {
         alert(`[${err.message}]. Please try to search for a valid city!`);

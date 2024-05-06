@@ -327,8 +327,11 @@ function Home() {
   const [count, increment, decrement] = useCounter(0, 1);
 
   /*
-    👉 React renders Component to UI:
+    👉 React renders Component to UI (JSX Output):
       📌 React Component CANNOT return *multiple JSX tags. You have to wrap them into a shared parent, like a <div>...</div> or an empty <>...</> wrapper
+
+      (--> 🚩 React will re-render *ONLY the Component with the updated State/Props—(by comparing the outputs of JSX code)
+        --> Home Component will be re-rendered))
     */
   return (
     <>
@@ -403,10 +406,10 @@ function Home() {
             <button onClick={increment}>count is {count}</button>
 
             {/* ❗️Pass Component's Properties as attributes from Parent Component (Home):
-          --> these attributes can be accessible within the Child Component (MyCounter) through the [🌸 props object] 
-          --> ⭐️ these attributes become MyCounter Component's Properties */}
+              --> these attributes can be accessible within the Child Component (MyCounter) through the [🌸 props object] 
+              --> ⭐️ these attributes become MyCounter Component's Properties */}
             <MyCounter
-              count={count}
+              // count={count}
               increCount={increment}
               decreCount={decrement}
             />
