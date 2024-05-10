@@ -57,6 +57,8 @@ export default function Expenses() {
 
       📍e.g. use Card Component as a shell/container around ExpenseItem list content */}
       <Card>
+        {/* [🔵 Controlled Component]
+        (e.g. 'ExpensesFilter' being controlled from its Parent Component using selected='' attribute)*/}
         <ExpensesFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
