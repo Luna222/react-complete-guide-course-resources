@@ -3,7 +3,7 @@ import { expenses } from '../../pages/Expenses/expenses-data.js';
 
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = props => {
   //❗️React will grab the latest State by each render
 
   //1️⃣ Using multiple States:
@@ -81,8 +81,12 @@ const ExpenseForm = () => {
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
-    console.log(expenseData);
-    // console.log(userInput);
+    /*
+    [💫 Important Pattern]: Child-to-Parent Component Communication (Bottom-up)
+      ==> use 'props' Object which points to the current inner Component Instance of ExpenseForm in Parent Component (NewExpense)
+    */
+    props.onSaveExpenseData(expenseData);
+
     setEnteredTitle('reflected!');
     setEnteredAmount('');
     setEnteredDate('');
@@ -151,8 +155,8 @@ const ExpenseForm = () => {
           <label>Date</label>
           <input
             type="date"
-            min="2019-01-01"
-            max="2022-12-31"
+            min="2022-01-01"
+            max="2024-12-31"
             value={enteredDate}
             onChange={dateChangeHandler}
           />

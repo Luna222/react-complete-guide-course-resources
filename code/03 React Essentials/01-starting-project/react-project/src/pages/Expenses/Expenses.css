@@ -10,7 +10,8 @@ body {
   font-family: 'Quicksand', sans-serif;
   line-height: 1.5;
 
-  color: #ebe7ef;
+  /* color: #ebe7ef; */
+  color: #495057;
   background-color: #4b4b4b;
 
   font-synthesis: none;
