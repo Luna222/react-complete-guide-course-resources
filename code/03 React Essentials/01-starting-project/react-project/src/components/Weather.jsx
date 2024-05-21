@@ -8,6 +8,8 @@ export default function Weather() {
   const inputRef = useRef(null);
   const formRef = useRef(null);
 
+  console.log(data);
+
   const fetchData = () => {
     /*
     ❗️ref.current ~ DOM Element of Browser API when you attached 'ref' attribute to a inner Web Component in JSX
