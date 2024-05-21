@@ -10,13 +10,27 @@ import { useState } from 'react';
 function Demo() {
   //👉 Use React Hook at the top-level inside of a Component
   //❗️React will grab the latest State by each render
-  const [selectedTopic, setSelectedTopic] = useState('components');
+  const [selectedTopic, setSelectedTopic] = useState();
 
   /*👉 You can respond to events by ❗️declaring eventHandler functions INSIDE your custom Components*/
   //📍Passing ✨Custom Arguments to eventHandler functions
   function handleSelect(selectedButton) {
     setSelectedTopic(selectedButton);
     console.log(`${selectedButton} selected!`);
+  }
+
+  let tabContent = <p>Please select a topic.</p>; //❗️in React, can store JSX code in a variable
+
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
   }
 
   //👉 React renders Component to UI (JSX Output):
@@ -65,13 +79,30 @@ function Demo() {
               🚩 React will re-render *ONLY the Component with the updated State/Props— 
               (by comparing the outputs of JSX code)
                 --> Demo Component will be re-rendered)*/}
-            <div id="tab-content">
-              <h3>{EXAMPLES[selectedTopic].title}</h3>
-              <p>{EXAMPLES[selectedTopic].description}</p>
-              <pre>
-                <code>{EXAMPLES[selectedTopic].code}</code>
-              </pre>
-            </div>
+            {tabContent}
+
+            {/* {!selectedTopic && <p>Please select a topic.</p>}
+            {selectedTopic && (
+              <div id="tab-content">
+                <h3>{EXAMPLES[selectedTopic].title}</h3>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+                <pre>
+                  <code>{EXAMPLES[selectedTopic].code}</code>
+                </pre>
+              </div>
+            )} */}
+
+            {/* {!selectedTopic ? (
+              <p>Please select a topic.</p>
+            ) : (
+              <div id="tab-content">
+                <h3>{EXAMPLES[selectedTopic].title}</h3>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+                <pre>
+                  <code>{EXAMPLES[selectedTopic].code}</code>
+                </pre>
+              </div>
+            )} */}
           </section>
         </main>
       </div>

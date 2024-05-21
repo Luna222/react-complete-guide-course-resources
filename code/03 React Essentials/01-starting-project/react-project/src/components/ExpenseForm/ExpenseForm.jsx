@@ -1,6 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { expenses } from '../../pages/Expenses/expenses-data.js';
-
 import './ExpenseForm.css';
 
 const ExpenseForm = props => {
@@ -78,7 +76,7 @@ const ExpenseForm = props => {
     const expenseData = {
       id: `e${++count.current}`,
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: parseInt(enteredAmount),
       date: new Date(enteredDate),
     };
     /*

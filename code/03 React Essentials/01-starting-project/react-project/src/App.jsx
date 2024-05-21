@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import Map from './components/Map.jsx';
 import Weather from './components/Weather.jsx';
-import Expenses from './pages/Expenses/Expense.jsx';
+import Expenses from './pages/Expenses/Expenses.jsx';
 import Demo from './pages/Demo/Demo.jsx';
 
 import reactLogo from './assets/react.svg';
@@ -346,7 +346,7 @@ function Home() {
       {/* <h1>Vite + React</h1> */}
 
       {/* 👉 nest MyButton Component into another component (App): */}
-      <div className="flex">
+      <div className="flex mb-1">
         {/* 👉 Conditional rendering */}
         <div className="mr-5">
           {count <= 7 ? <ProfileHedy /> : <ProfileKath />}

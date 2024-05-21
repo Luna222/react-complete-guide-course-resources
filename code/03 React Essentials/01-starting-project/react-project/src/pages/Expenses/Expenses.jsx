@@ -1,13 +1,17 @@
 import './Expenses.css';
-import ExpenseItem from '../../components/ExpenseItem/ExpenseItem.jsx';
+import '../../components/ExpensesList/ExpensesList.css';
+
 import NewExpense from '../../components/NewExpense/NewExpense.jsx';
 import ExpensesFilter from '../../components/ExpensesFilter/ExpensesFilter.jsx';
-import { expenses } from './expenses-data.js';
+import ExpenseItem from '../../components/ExpenseItem/ExpenseItem.jsx';
 import Card from '../../components/Card/Card.jsx';
+import ExpensesChart from '../../components/ExpensesChart/ExpensesChart.jsx';
+import { DUMMY_EXPENSES } from './expenses-data.js';
 import { useState } from 'react';
+// import ExpensesList from '../../components/ExpensesList/ExpensesList.jsx';
 
 export default function Expenses() {
-  const [expenseList, setExpenseList] = useState(expenses);
+  const [expenseArr, setExpenseArr] = useState(DUMMY_EXPENSES);
   const [filteredYear, setFilteredYear] = useState('2024');
   //register a new State:
   // const [filterInfoText, setFilterInfoText] = useState('2022 & 2023');
@@ -35,18 +39,37 @@ export default function Expenses() {
 
   const addExpenseHandler = newItem => {
     //🔺 render data list dynamically
-    setExpenseList([...expenseList, newItem]);
+    // setExpenseList([...expenseList, newItem]);
+    setExpenseArr(pendingState => [newItem, ...pendingState]);
 
-    // console.log('In Expense.jsx:');
-    // console.log(expenseList);
+    console.log('In Expense.jsx:');
+    console.log(newItem);
   };
+
+  const filteredExpenses = expenseArr.filter(
+    expense => expense.date.getFullYear().toString() === filteredYear
+  );
+
+  let expensesContent = (
+    <h2 className="expenses-list__fallback">Found no expenses.</h2>
+  );
+
+  if (filteredExpenses.length > 0) {
+    expensesContent = (
+      <ul className="expenses-list">
+        {filteredExpenses.map(({ id, title, amount, date }) => (
+          <ExpenseItem key={id} title={title} amount={amount} date={date} />
+        ))}
+      </ul>
+    );
+  }
 
   return (
     <div
       className="page-wrapper-expense"
       style={{
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'column',
       }}
@@ -56,7 +79,7 @@ export default function Expenses() {
       ❗️whenever you COMBINE/COMPOSE a Component from smaller building blocks—nesting inner Components inside Parent Component, ur using Composition
 
       📍e.g. use Card Component as a shell/container around ExpenseItem list content */}
-      <Card>
+      <Card className="expenses">
         {/* [🔵 Controlled Component]
         (e.g. 'ExpensesFilter' being controlled from its Parent Component using selected='' attribute)*/}
         <ExpensesFilter
@@ -64,13 +87,9 @@ export default function Expenses() {
           onChangeFilter={filterChangeHandler}
         />
         <p>Data for years {filterInfoText} is hidden.</p>
-        {/* <ExpenseItem title="" amount="" date="" />
-        <ExpenseItem title="" amount="" date="" />
-        <ExpenseItem title="" amount="" date="" />
-        <ExpenseItem title="" amount="" date="" /> */}
-        {expenseList.map(({ id, title, amount, date }) => (
-          <ExpenseItem key={id} title={title} amount={amount} date={date} />
-        ))}
+        <ExpensesChart expenses={filteredExpenses} />
+        {expensesContent}
+        {/* <ExpensesList items={filteredExpenses} /> */}
       </Card>
     </div>
   );
