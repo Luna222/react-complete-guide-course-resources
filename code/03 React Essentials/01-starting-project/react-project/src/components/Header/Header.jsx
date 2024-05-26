@@ -1,4 +1,5 @@
 import './Header.css';
+import styles from '../../pages/Demo/Demo.module.css';
 import reactImg from '../../assets/react-core-concepts.png';
 // import componentsImg from '../assets/components.png';
 //❗️'reactImg' var points at the image (path)
@@ -23,7 +24,7 @@ export default function Header() {
       {/* 👉 set dynamic HTML attribute (e.g. src={expression}) */}
       <img src={reactImg} alt="Stylized atom" />
 
-      <h1>React Essentials</h1>
+      <h1 className={styles['header-h1']}>React Essentials</h1>
 
       {/* 👉 render dynamic output value in a Component */}
       <p>

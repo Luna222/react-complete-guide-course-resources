@@ -7,12 +7,11 @@ import Map from './components/Map.jsx';
 import Weather from './components/Weather.jsx';
 import Expenses from './pages/Expenses/Expenses.jsx';
 import Demo from './pages/Demo/Demo.jsx';
+import AuthInputs from './pages/AuthInputs/AuthInputs.jsx';
 
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-
-// let myCount = 0;
 
 const user1 = {
   name: 'Hedy Lamarr',
@@ -384,6 +383,19 @@ function Home() {
           >
             🌻 Check out Demo
           </Link>
+          <Link
+            to="auth"
+            className="mt-1"
+            style={{
+              color: '#f7f7f7',
+              fontWeight: 'bold',
+              backgroundColor: 'var(--color7)',
+              padding: '1rem',
+              borderRadius: '2rem',
+            }}
+          >
+            🎨 Auth
+          </Link>
         </div>
         <div>
           Zoom level: {zoomLevel}x
@@ -465,6 +477,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="expenses" element={<Expenses />} />
         <Route path="demo" element={<Demo />} />
+        <Route path="auth" element={<AuthInputs />} />
       </Routes>
     </Router>
   );

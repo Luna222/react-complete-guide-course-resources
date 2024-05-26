@@ -1,4 +1,4 @@
-import './Demo.css';
+import styles from './Demo.module.css';
 import Header from '../../components/Header/Header.jsx';
 import CoreConcept from '../../components/CoreConcept.jsx';
 import TabButton from '../../components/TabButton.jsx';
@@ -23,7 +23,7 @@ function Demo() {
 
   if (selectedTopic) {
     tabContent = (
-      <div id="tab-content">
+      <div id={styles['tab-content']}>
         <h3>{EXAMPLES[selectedTopic].title}</h3>
         <p>{EXAMPLES[selectedTopic].description}</p>
         <pre>
@@ -35,11 +35,11 @@ function Demo() {
 
   //👉 React renders Component to UI (JSX Output):
   return (
-    <div className="page-wrapper">
+    <div className={styles['page-wrapper']}>
       <div>
         <Header />
         <main>
-          <section id="core-concepts">
+          <section id={styles['core-concepts']}>
             <h2>Core Concepts</h2>
             <ul>
               {/* ❗️under the hood, React will call the actual Component Functions */}
@@ -55,7 +55,7 @@ function Demo() {
             </ul>
           </section>
           {/* interactive section */}
-          <section id="examples">
+          <section id={styles['examples']}>
             <h2>Examples</h2>
             <menu>
               <TabButton onSelect={() => handleSelect('components')}>
