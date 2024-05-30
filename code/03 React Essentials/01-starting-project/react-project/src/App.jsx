@@ -7,7 +7,8 @@ import Map from './components/Map.jsx';
 import Weather from './components/Weather.jsx';
 import Expenses from './pages/Expenses/Expenses.jsx';
 import Demo from './pages/Demo/Demo.jsx';
-import AuthInputs from './pages/AuthInputs/AuthInputs.jsx';
+import AuthInputsCssModules from './pages/AuthInputs/AuthInputsCssModules.jsx';
+import AuthInputsStyledComponent from './pages/AuthInputs/AuthInputsStyledComponent.jsx';
 
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -477,7 +478,8 @@ function App() {
         <Route index element={<Home />} />
         <Route path="expenses" element={<Expenses />} />
         <Route path="demo" element={<Demo />} />
-        <Route path="auth" element={<AuthInputs />} />
+        {/* <Route path="auth" element={<AuthInputsCssModules />} /> */}
+        <Route path="auth" element={<AuthInputsStyledComponent />} />
       </Routes>
     </Router>
   );

@@ -1,5 +1,5 @@
-import logo from '../assets/logo.png';
-import styles from '../pages/AuthInputs/AuthInputs.module.css';
+import logo from '../../assets/logo.png';
+import styles from '../../pages/AuthInputs/AuthInputs.module.css';
 
 export default function AuthHeader() {
   return (

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from './AuthInputs.module.css'; //👉 Import css modules stylesheet as styles
-import AuthHeader from '../../components/AuthHeader';
+import AuthHeader from '../../components/AuthHeader/AuthHeader';
 
-export default function AuthInputs() {
+export default function AuthInputsCssModules() {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
