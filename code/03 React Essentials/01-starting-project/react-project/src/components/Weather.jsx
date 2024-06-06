@@ -71,7 +71,7 @@ export default function Weather() {
               <br />
               <b className="color-blue">Condition:</b>{' '}
               <img
-                className="mt-1"
+                className="mt-1 mx-auto"
                 src={item[1]?.current?.condition?.icon}
                 alt="weather today"
                 width="50px"

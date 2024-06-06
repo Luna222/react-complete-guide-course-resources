@@ -9,6 +9,7 @@ import Expenses from './pages/Expenses/Expenses.jsx';
 import Demo from './pages/Demo/Demo.jsx';
 import AuthInputsCssModules from './pages/AuthInputs/AuthInputsCssModules.jsx';
 import AuthInputsStyledComponent from './pages/AuthInputs/AuthInputsStyledComponent.jsx';
+import AuthInputsTailwind from './pages/AuthInputs/AuthInputsTailwind.jsx';
 
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -335,7 +336,7 @@ function Home() {
     */
   return (
     <>
-      <div>
+      <div className="flex justify-center">
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -479,7 +480,8 @@ function App() {
         <Route path="expenses" element={<Expenses />} />
         <Route path="demo" element={<Demo />} />
         {/* <Route path="auth" element={<AuthInputsCssModules />} /> */}
-        <Route path="auth" element={<AuthInputsStyledComponent />} />
+        {/* <Route path="auth" element={<AuthInputsStyledComponent />} /> */}
+        <Route path="auth" element={<AuthInputsTailwind />} />
       </Routes>
     </Router>
   );

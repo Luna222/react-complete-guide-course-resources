@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
 
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -142,6 +147,21 @@ ul.city-list {
   margin-right: 5rem;
 }
 
+.mail-notification-title {
+  color: var(--color5);
+}
+
+ul img {
+  margin: 0 auto;
+}
+
+/*
+📌 Default Styles: By default, the body has a white background and black text, which works for light themes.
+
+🌙 Dark Theme Media Query: If the user prefers a dark theme, the [✨@media (prefers-color-scheme: dark)] styles are applied, setting the background to black and text to white.
+
+🌞 Light Theme Media Query: The [✨@media (prefers-color-scheme: light)] styles ensure that if the user prefers a light theme, the background stays white and text remains black.
+*/
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
