@@ -5,7 +5,7 @@ import cityImg from '../../assets/city.png';
 
 const Article = function () {
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden tablet:max-w-2xl">
+    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden tablet:max-w-2xl font-sans">
       <div className="tablet:flex">
         <div className="tablet:shrink-0">
           <img

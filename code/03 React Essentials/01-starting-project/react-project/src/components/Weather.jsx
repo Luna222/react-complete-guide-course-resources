@@ -58,7 +58,7 @@ export default function Weather() {
             ref={inputRef} //❗️inputRef.current = this built-in input Component (DOM Element)
             autoFocus
           />
-          <button type="submit" onClick={handleClick}>
+          <button type="submit" className="primaryBtn" onClick={handleClick}>
             Submit (will move Focus to the input)
           </button>
         </form>
