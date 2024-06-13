@@ -166,7 +166,7 @@ export default function AuthInputsCssModules() {
       </main>
 
       <article>
-        <div className="container-md grid grid-cols-1 tablet:grid-cols-3 tablet:items-end gap-7">
+        <div className="container-md grid grid-cols-1 tablet:grid-cols-3 gap-7">
           {[
             {
               id: 'p1',
