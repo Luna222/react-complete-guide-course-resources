@@ -25,7 +25,7 @@ const MailBox = function () {
 
 export default function AuthHeader() {
   return (
-    <header className="mb-12">
+    <header className="container-md">
       <img src={logo} alt="A canvas" />
       <h1 className={styles['header-h1']}>ReactArt</h1>
       <p className={styles['header-p']}>

@@ -339,7 +339,7 @@ function Home() {
         --> Home Component will be re-rendered))
     */
   return (
-    <>
+    <div className="container-md">
       <div className="flex justify-center">
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -401,7 +401,7 @@ function Home() {
       {/* <h1>Vite + React</h1> */}
 
       {/* 👉 nest MyButton Component into another component (App): */}
-      <div className="flex mb-1">
+      <div className="flex justify-center mb-1">
         {/* 👉 Conditional rendering */}
         <div className="mr-5">
           {count <= 7 ? <ProfileHedy /> : <ProfileKath />}
@@ -462,60 +462,62 @@ function Home() {
         </div>
       </div>
 
-      <div className="card content-auto">
-        <div className="flex divider justify-center">
-          <div className="mr-1" style={{ width: '350px' }}>
-            <Description count={count} onClick={increment} />
-          </div>
-          <div className="mr-1">
-            {/* <button onClick={() => setCount(count => count + 1)}>
+      <div className="container-sm">
+        <div className="card w-full content-auto">
+          <div className="flex divider justify-center">
+            <div className="mr-1" style={{ width: '350px' }}>
+              <Description count={count} onClick={increment} />
+            </div>
+            <div className="mr-1">
+              {/* <button onClick={() => setCount(count => count + 1)}>
             count is {count}
           </button> */}
-            <button className="primaryBtn" onClick={increment}>
-              count is {count}
-            </button>
+              <button className="primaryBtn" onClick={increment}>
+                count is {count}
+              </button>
 
-            {/* ❗️Pass Component's Properties as attributes from Parent Component (Home):
+              {/* ❗️Pass Component's Properties as attributes from Parent Component (Home):
               --> these attributes can be accessible within the Child Component (MyCounter) through the [🌸 props object] 
               --> ⭐️ these attributes become MyCounter Component's Properties */}
-            <MyCounter
-              // count={count}
-              increCount={increment}
-              decreCount={decrement}
-            />
+              <MyCounter
+                // count={count}
+                increCount={increment}
+                decreCount={decrement}
+              />
+            </div>
+            <div>
+              <MyButton />
+            </div>
           </div>
-          <div>
-            <MyButton />
+
+          <div style={{ padding: '1rem 0', background: 'var(--bg_secondary)' }}>
+            <a
+              className="mt-1"
+              href="https://react.dev/learn/manipulating-the-dom-with-refs"
+              style={{ fontWeight: 'bold' }}
+            >
+              ⭐️ Manipulating the DOM with Refs && <br />
+            </a>
+            <a
+              className="mt-1"
+              href="https://react.dev/reference/react/useEffect#fetching-data-with-effects"
+              style={{ fontWeight: 'bold' }}
+            >
+              ⭐️ fetching data with Effects from API for your Component
+            </a>
+            <Cities />
+            <Weather />
           </div>
-        </div>
 
-        <div style={{ padding: '1rem 0', background: 'var(--bg_secondary)' }}>
-          <a
-            className="mt-1"
-            href="https://react.dev/learn/manipulating-the-dom-with-refs"
-            style={{ fontWeight: 'bold' }}
-          >
-            ⭐️ Manipulating the DOM with Refs && <br />
-          </a>
-          <a
-            className="mt-1"
-            href="https://react.dev/reference/react/useEffect#fetching-data-with-effects"
-            style={{ fontWeight: 'bold' }}
-          >
-            ⭐️ fetching data with Effects from API for your Component
-          </a>
-          <Cities />
-          <Weather />
+          <p>
+            Edit <code>src/App.jsx</code> and save to test H MR
+          </p>
         </div>
-
-        <p>
-          Edit <code>src/App.jsx</code> and save to test H MR
-        </p>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-    </>
+    </div>
   );
 }
 

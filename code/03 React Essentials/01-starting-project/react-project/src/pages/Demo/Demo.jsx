@@ -35,7 +35,7 @@ function Demo() {
 
   //👉 React renders Component to UI (JSX Output):
   return (
-    <div className={styles['page-wrapper']}>
+    <div className={`page-wrapper ${styles['page-wrapper-demo']}`}>
       <div>
         <Header />
         <main>

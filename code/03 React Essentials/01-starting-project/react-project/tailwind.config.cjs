@@ -55,6 +55,28 @@ module.exports = {
           backgroundColor: '#f9f9f9',
           marginBottom: theme('spacing[2.5]'),
         },
+        '.container-md': {
+          maxWidth: '1280px',
+          width: '100%',
+          margin: '0 auto',
+          padding: theme('spacing.6'),
+          overflow: 'hidden',
+        },
+        '.container-sm': {
+          maxWidth: '960px',
+          width: '100%',
+          margin: '0 auto',
+          padding: theme('spacing.6'),
+          overflow: 'hidden',
+        },
+        //This setup ensures your .page-wrapper element covers the entire viewport
+        '.page-wrapper': {
+          width: '100vw',
+          height: '100vh',
+          margin: 0,
+          padding: 0,
+          overflow: 'auto',
+        },
       });
       addUtilities({
         '.content-auto': {
@@ -63,7 +85,7 @@ module.exports = {
       });
       /*
       ['&:hover', '&:focus']: This array contains the CSS selectors that the new variant will apply to (:hover and :focus pseudo-classes)
-      
+
         ==> 🤓 When you use the 'hocus' Variant Modifier, Tailwind will apply utility classes BOTH on hover and focus states.
       */
       addVariant('hocus', ['&:hover', '&:focus']);

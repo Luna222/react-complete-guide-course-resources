@@ -66,7 +66,7 @@ export default function Expenses() {
 
   return (
     <div
-      className="page-wrapper-expense"
+      className="page-wrapper page-wrapper-expense"
       style={{
         display: 'flex',
         justifyContent: 'flex-start',
