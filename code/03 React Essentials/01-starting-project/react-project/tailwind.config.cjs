@@ -10,13 +10,16 @@ module.exports = {
       //Tablets and above: => @media (min-width: 640px) { ... }
 
       laptop: '768px',
-      //Latops and above: => @media (min-width: 768px) { ... }
+      //Laptops and above: => @media (min-width: 768px) { ... }
 
       desktop: '1024px',
       //Desktops: => @media (min-width: 1024px) { ... }
     },
     extend: {
-      fontFamily: { sans: ['"Rubik"', ...defaultTheme.fontFamily.sans] },
+      fontFamily: {
+        sans: ['"Rubik"', ...defaultTheme.fontFamily.sans],
+        title: ['"Pacifico"', 'cursive'],
+      },
       colors: {
         pink: {
           50: '#ffdeeb',
@@ -25,6 +28,21 @@ module.exports = {
           300: '#f783ac',
           400: '#f06595',
         },
+      },
+      keyframes: {
+        fadeInUp: {
+          from: {
+            opacity: '0',
+            transform: 'translateY(0.25rem) scale(0.90)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translateY(0) scale(1)',
+          },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fadeInUp 1s ease-out forwards',
       },
     },
   },
@@ -81,6 +99,9 @@ module.exports = {
       addUtilities({
         '.content-auto': {
           contentVisibility: 'auto',
+        },
+        '.animate-fade-in-up': {
+          animation: theme('animation.fade-in-up'),
         },
       });
       /*

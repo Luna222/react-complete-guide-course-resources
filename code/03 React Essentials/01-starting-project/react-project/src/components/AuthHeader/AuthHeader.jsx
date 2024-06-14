@@ -1,6 +1,5 @@
 import logo from '../../assets/logo.png';
 import mailIcon from '../../assets/mail-icon.png';
-import styles from '../../pages/AuthInputs/AuthInputs.module.css';
 
 const MailBox = function () {
   return (
@@ -23,14 +22,38 @@ const MailBox = function () {
   );
 };
 
+const Product = function () {
+  return (
+    <div
+      id="animated-element"
+      className="group relative m-6 h-64 w-64 opacity-0 transform transition-all delay-150 duration-500 ease-out animate-fade-in-up"
+    >
+      <img
+        src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/s9-case-unselect-gallery-1-202403_GEO_VN_FMT_WHH?wid=752&hei=720&fmt=p-jpg&qlt=80&.v=1708729783552"
+        alt="Delightful Image"
+        className="h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 backdrop-brightness-100 backdrop-filter transition-all duration-200 ease-in-out group-hover:bg-white/50 group-hover:backdrop-brightness-105"></div>
+    </div>
+  );
+};
+
 export default function AuthHeader() {
   return (
-    <header className="container-md">
-      <img src={logo} alt="A canvas" />
-      <h1 className={styles['header-h1']}>ReactArt</h1>
-      <p className={styles['header-p']}>
-        A community of artists and art-lovers.
-      </p>
+    <header className="container-md flex flex-col items-center mt-8 mb-8 tablet:mb-16">
+      <img
+        src={logo}
+        alt="A canvas"
+        className="object-contain mb-8 w-44 h-44"
+      />
+      <h1 className="text-xl tablet:text-4xl font-semibold tracking-widest text-center uppercase text-amber-800 font-title">
+        ReactArt
+      </h1>
+      <p className="text-stone-500">A community of artists and art-lovers.</p>
+      <div className="flex">
+        <Product />
+        <Product />
+      </div>
       <MailBox />
     </header>
   );

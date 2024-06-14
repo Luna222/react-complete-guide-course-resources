@@ -101,6 +101,28 @@ const Contact = function () {
   );
 };
 
+//⭐️ ❗️this Input Component should be imported from an external Module
+const Input = function ({ label, invalid, ...props }) {
+  //👉 Dynamic & Conditional Styling:
+  let labelClasses = 'block mb-2 text-xs font-bold tracking-wide uppercase',
+    inputClasses = 'w-full px-3 py-2 leading-tight border rounded shadow';
+
+  if (invalid) {
+    labelClasses += ' text-red-400';
+    inputClasses += ' text-red-500 bg-red-100 border-red-300';
+  } else {
+    labelClasses += ' text-stone-300';
+    inputClasses += ' text-gray-700 bg-stone-300';
+  }
+
+  return (
+    <p>
+      <label className={labelClasses}>{label}</label>
+      <input className={inputClasses} {...props} />
+    </p>
+  );
+};
+
 export default function AuthInputsCssModules() {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
@@ -127,36 +149,42 @@ export default function AuthInputsCssModules() {
       <AuthHeader />
       <main>
         <div className="container-md tablet:flex">
-          <div id={styles['auth-inputs']}>
-            <div className={styles.controls}>
-              <p>
-                <label>Email</label>
-                {/* 👉 Dynamic & Conditional Inline Styles */}
-                <input
-                  type="email"
-                  className={emailNotValid ? styles.invalid : undefined}
-                  onChange={event =>
-                    handleInputChange('email', event.target.value)
-                  }
-                />
-              </p>
-              <p>
-                <label>Password</label>
-                {/* ❗️Boolean is an invalid data type to className, use 'undefined' instead */}
-                <input
-                  type="password"
-                  className={passwordNotValid ? styles.invalid : undefined}
-                  onChange={event =>
-                    handleInputChange('password', event.target.value)
-                  }
-                />
-              </p>
+          <div
+            id="auth-inputs"
+            className="w-full max-w-sm p-8 mx-auto rounded shadow-md bg-gradient-to-b from-stone-700 to-slate-800 "
+          >
+            {/* control */}
+            <div className="flex flex-col gap-2 text-left mb-6">
+              <Input
+                type="email"
+                label="Email"
+                invalid={emailNotValid}
+                onChange={event =>
+                  handleInputChange('email', event.target.value)
+                }
+              />
+              <Input
+                type="password"
+                label="Password"
+                invalid={passwordNotValid}
+                onChange={event =>
+                  handleInputChange('password', event.target.value)
+                }
+              />
             </div>
-            <div className={styles.actions}>
-              <button type="button" className={styles['text-button']}>
+
+            {/* action */}
+            <div className="flex justify-end gap-4">
+              <button
+                type="button"
+                className="text-amber-400 hover:text-amber-500"
+              >
                 Create a new account
               </button>
-              <button className={styles.button} onClick={handleLogin}>
+              <button
+                className="px-4 py-2 font-semibold upppercase rounded text-stone-900 bg-amber-400 hover:bg-amber-500"
+                onClick={handleLogin}
+              >
                 Sign In
               </button>
             </div>
