@@ -33,7 +33,7 @@ module.exports = {
         fadeInUp: {
           from: {
             opacity: '0',
-            transform: 'translateY(0.25rem) scale(0.90)',
+            transform: 'translateY(0.25rem) scale(0.9)',
           },
           to: {
             opacity: '1',

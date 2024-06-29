@@ -148,7 +148,7 @@ export default function AuthInputsCssModules() {
     <div className={`page-wrapper ${styles['page-wrapper-auth']}`}>
       <AuthHeader />
       <main>
-        <div className="container-md tablet:flex">
+        <form className="container-md tablet:flex">
           <div
             id="auth-inputs"
             className="w-full max-w-sm p-8 mx-auto rounded shadow-md bg-gradient-to-b from-stone-700 to-slate-800 "
@@ -190,7 +190,7 @@ export default function AuthInputsCssModules() {
             </div>
           </div>
           <Contact />
-        </div>
+        </form>
       </main>
 
       <article>
