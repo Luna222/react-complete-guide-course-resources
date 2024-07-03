@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react'; //👉 import Namespaces (React
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import Map from './components/Map.jsx';
-import Weather from './components/Weather.jsx';
+import WeatherCache from './components/WeatherCache.jsx';
 import Expenses from './pages/Expenses/Expenses.jsx';
 import Demo from './pages/Demo/Demo.jsx';
 import AuthInputsCssModules from './pages/AuthInputs/AuthInputsCssModules.jsx';
@@ -506,7 +506,7 @@ function Home() {
               ⭐️ fetching data with Effects from API for your Component
             </a>
             <Cities />
-            <Weather />
+            <WeatherCache />
           </div>
 
           <p>
