@@ -10,6 +10,7 @@ import Demo from './pages/Demo/Demo.jsx';
 import AuthInputsCssModules from './pages/AuthInputs/AuthInputsCssModules.jsx';
 import AuthInputsStyledComponent from './pages/AuthInputs/AuthInputsStyledComponent.jsx';
 import AuthInputsTailwind from './pages/AuthInputs/AuthInputsTailwind.jsx';
+import Challenges from './pages/Challenges/Challenges.jsx';
 
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -452,6 +453,19 @@ function Home() {
           >
             🎨 Auth
           </Link>
+          <Link
+            to="challenges"
+            className="mt-1"
+            style={{
+              color: '#495057',
+              fontWeight: 'bold',
+              backgroundColor: 'var(--bg_main)',
+              padding: '1rem',
+              borderRadius: '2rem',
+            }}
+          >
+            💚 Challenges
+          </Link>
         </div>
         <div>
           Zoom level: {zoomLevel}x
@@ -540,6 +554,7 @@ function App() {
         {/* <Route path="auth" element={<AuthInputsCssModules />} /> */}
         {/* <Route path="auth" element={<AuthInputsStyledComponent />} /> */}
         <Route path="auth" element={<AuthInputsTailwind />} />
+        <Route path="challenges" element={<Challenges />} />
       </Routes>
     </Router>
   );

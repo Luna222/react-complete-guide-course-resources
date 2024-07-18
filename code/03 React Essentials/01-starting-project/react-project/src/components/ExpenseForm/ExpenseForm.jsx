@@ -5,6 +5,7 @@ const ExpenseForm = props => {
   //❗️React will grab the latest State by each render
 
   //1️⃣ Using multiple States:
+  //⭐️ manage inputs with State
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');

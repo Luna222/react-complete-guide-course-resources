@@ -124,6 +124,7 @@ const Input = function ({ label, invalid, ...props }) {
 };
 
 export default function AuthInputsCssModules() {
+  //⭐️ manage inputs with State
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -137,7 +138,8 @@ export default function AuthInputsCssModules() {
     }
   }
 
-  function handleLogin() {
+  function handleLogin(e) {
+    e.preventDefault();
     setSubmitted(true);
   }
 
