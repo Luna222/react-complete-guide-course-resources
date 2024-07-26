@@ -35,6 +35,7 @@ export default function WeatherCache() {
 
   //⭐️ Effect will be executed after this React component is mounted/rendered
   useEffect(() => {
+    // This is where the side effect happens
     const cachedData = getLocalStorage(KEY_CACHE, []);
     const cacheExpiration = getLocalStorage(CACHE_EXPIRATION_KEY, 0);
 

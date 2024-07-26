@@ -11,6 +11,7 @@ import AuthInputsCssModules from './pages/AuthInputs/AuthInputsCssModules.jsx';
 import AuthInputsStyledComponent from './pages/AuthInputs/AuthInputsStyledComponent.jsx';
 import AuthInputsTailwind from './pages/AuthInputs/AuthInputsTailwind.jsx';
 import Challenges from './pages/Challenges/Challenges.jsx';
+import PlacePicker from './pages/PlacePicker/PlacePicker.jsx';
 
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -197,7 +198,7 @@ function ProfileHedy() {
       </header>
       <Welcome />
       <img
-        className="avatar"
+        className="avatar block my-4"
         src={user1.imageUrl}
         alt={'Photo of ' + user1.name}
         //❗️ style={{}} is not a special syntax, but a regular {} object inside the style={ } JSX curly braces
@@ -206,8 +207,8 @@ function ProfileHedy() {
           height: user1.imageSize,
         }}
       />
-      <span style={{ display: 'inline-block', marginLeft: '2rem' }}>
-        <h3>Fav Foods:</h3>
+      <span style={{ display: 'block', marginLeft: 0 }}>
+        <h3 className="text-left">Fav Foods:</h3>
         <ul style={{ listStylePosition: 'outside', textAlign: 'left' }}>
           {favFoods}
         </ul>
@@ -230,7 +231,7 @@ function ProfileKath() {
       </header>
       <Welcome />
       <img
-        className="avatar"
+        className="avatar block my-4"
         src={user2.imageUrl}
         alt={'Photo of ' + user2.name}
         //❗️ style={{}} is not a special syntax, but a regular {} object inside the style={ } JSX curly braces
@@ -239,8 +240,8 @@ function ProfileKath() {
           height: user2.imageSize,
         }}
       />
-      <span style={{ display: 'inline-block', marginLeft: '2rem' }}>
-        <h3>Fav Foods:</h3>
+      <span style={{ display: 'block', marginLeft: 0 }}>
+        <h3 className="text-left">Fav Foods:</h3>
         <ul style={{ listStylePosition: 'outside', textAlign: 'left' }}>
           {favFoods}
         </ul>
@@ -404,11 +405,12 @@ function Home() {
       {/* 👉 nest MyButton Component into another component (App): */}
       <div className="flex justify-center mb-1">
         {/* 👉 Conditional rendering */}
-        <div className="mr-5">
+        <div className="mr-4">
           {count <= 7 ? <ProfileHedy /> : <ProfileKath />}
         </div>
+
         <div
-          className="flex mr-5"
+          className="flex mr-3"
           style={{
             flexDirection: 'column',
             justifyContent: 'flex-end',
@@ -467,6 +469,28 @@ function Home() {
             💚 Challenges
           </Link>
         </div>
+
+        <div
+          className="flex mr-3"
+          style={{
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Link
+            to="placePicker"
+            style={{
+              color: 'rgb(73, 80, 87)',
+              fontWeight: 'bold',
+              backgroundColor: '#96f2d7',
+              padding: '1rem',
+              borderRadius: '2rem',
+            }}
+          >
+            📸 PlacePicker
+          </Link>
+        </div>
+
         <div>
           Zoom level: {zoomLevel}x
           <button onClick={() => setZoomLevel(zoomLevel + 1)}>+</button>
@@ -540,7 +564,7 @@ function Home() {
 */
 class Welcome extends React.Component {
   render() {
-    return <h3>Hello! 🌻</h3>;
+    return <h3 className="text-left">Hello! 🌻</h3>;
   }
 }
 
@@ -555,6 +579,7 @@ function App() {
         {/* <Route path="auth" element={<AuthInputsStyledComponent />} /> */}
         <Route path="auth" element={<AuthInputsTailwind />} />
         <Route path="challenges" element={<Challenges />} />
+        <Route path="placePicker" element={<PlacePicker />} />
       </Routes>
     </Router>
   );

@@ -12,7 +12,7 @@ export default function TimerChallenge1({ title, targetTime }) {
 
   const timerIsActive = timeRemaining > 0 && timeRemaining < targetTime * 1000;
 
-  console.log(timeRemaining);
+  // console.log(timeRemaining);
 
   //🚩 when the Timer is expired:
   if (timeRemaining <= 0) {

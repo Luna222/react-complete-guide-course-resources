@@ -5,7 +5,6 @@ import styles from './Challenges.module.css';
 function Challenges() {
   return (
     <div className={`page-wrapper ${styles['page-wrapper-challenges']}`}>
-      <div id="modal"></div>
       <div id={styles.content}>
         <header>
           <h1>
