@@ -5,7 +5,7 @@ import './index.css';
 
 //❗️the root Component (App) being rendered here
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <App />
+  // </React.StrictMode>
 );

@@ -1,29 +1,44 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import Places from '../../components/PlacePickerItems/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js';
-import Modal_Alter from '../../components/PlacePickerItems/Modal_Alter.jsx';
+import Modal from '../../components/PlacePickerItems/Modal.jsx';
 import DeleteConfirmation from '../../components/PlacePickerItems/DeleteConfirmation.jsx';
 import logoImg from '../../../public/placeImgs/logo.png';
 
 import styles from './PlacePicker.module.css';
 import { sortPlacesByDistance } from './loc.js';
 
-//🌎 Global variables/scope that will be SHARED across all Component Instances & only be executed❗️ONCE
-const storedIds = JSON.parse(localStorage.getItem('SELECTED_PLACES_IDS')) ?? [];
-
-const storedPickedPlaces = storedIds.map(id =>
-  AVAILABLE_PLACES.find(place => place.id === id)
-);
-
-function PlacePicker() {
-  // const modal = useRef();
-
-  const selectedPlaceId = useRef();
-  //🌸 we switch from managing the modal in an imperative way to a declarative way (*prop-focused solution)
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+function PlacePicker_Inspect() {
+  const modal = useRef();
+  const selectedPlace = useRef();
   const [availablePlaces, setAvailablePlaces] = useState([]);
-  const [pickedPlaces, setPickedPlaces] = useState(storedPickedPlaces);
+  const [pickedPlaces, setPickedPlaces] = useState([]);
+
+  useEffect(() => {
+    const storedIds =
+      JSON.parse(localStorage.getItem('SELECTED_PLACES_IDS')) ?? [];
+
+    console.log('Stored IDs on load:', storedIds);
+
+    const storedPickedPlaces = storedIds.map(id =>
+      AVAILABLE_PLACES.find(place => place.id === id)
+    );
+    console.log('storedPickedPlaces on load:', storedPickedPlaces);
+    setPickedPlaces(storedPickedPlaces);
+
+    //🔺 Since state updates are asynchronous, the console.log(pickedPlaces) might not reflect the new state immediately.
+    console.log('pickPlaced on load:', pickedPlaces); //[]
+  }, []);
+
+  useEffect(() => {
+    console.log('pickedPlaces on state change:', pickedPlaces);
+
+    localStorage.setItem(
+      'SELECTED_PLACES_IDS',
+      JSON.stringify(pickedPlaces.map(place => place.id))
+    );
+  }, [pickedPlaces]);
 
   //📍navigator, localStorage: global objects exposed by the browser
 
@@ -103,61 +118,29 @@ function PlacePicker() {
   }
 
   function handleStartRemovePlace(id) {
-    // modal.current.open();
-    setModalIsOpen(true);
-    selectedPlaceId.current = id;
+    modal.current.open();
+    selectedPlace.current = id;
   }
 
   function handleStopRemovePlace() {
-    // modal.current.close();
-    setModalIsOpen(false);
+    modal.current.close();
   }
 
-  /*
-  💚 inner function wrapped in [⭐️ useCallback(setupFn, dependencies?)] Hook does NOT get re-created/re-defined whenever its surrounding Component function is re-rendered/executed again
-    👉 ❗️instead, it stores this inner func internally in memory & reuses that stored function whenever the Component function executes again
-
-    📌 React will ONLY re-create/re-define the inner function wrapped in useCallBack if your dependencies changed
-
-    📌 if Dependency List is empty ([]), the inner function will NOT get re-created/re-defined
-
-    📌 useCallback Hook returns a function value
-  */
-  const handleRemovePlace = useCallback(function handleRemovePlace() {
+  function handleRemovePlace() {
     setPickedPlaces(prevPickedPlaces =>
-      prevPickedPlaces.filter(place => place.id !== selectedPlaceId.current)
+      prevPickedPlaces.filter(place => place.id !== selectedPlace.current)
     );
-    // modal.current.close();
-    setModalIsOpen(false); //close modal
-
-    //🔺 Since state updates are asynchronous, the console.log(pickedPlaces) might not reflect the new state immediately.
-    console.log(pickedPlaces);
-
-    const storedIds =
-      JSON.parse(localStorage.getItem('SELECTED_PLACES_IDS')) ?? [];
-
-    localStorage.setItem(
-      'SELECTED_PLACES_IDS',
-      JSON.stringify(storedIds.filter(id => id !== selectedPlaceId.current))
-    );
-  }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem(
-  //     'SELECTED_PLACES_IDS',
-  //     JSON.stringify(pickedPlaces.map(place => place.id))
-  //   );
-  // }, [pickedPlaces]);
+    modal.current.close();
+  }
 
   return (
     <div className={`page-wrapper ${styles['page-wrapper-placePicker']}`}>
-      {/* remove prop 'ref={modal}' */}
-      <Modal_Alter open={modalIsOpen} onClose={handleStopRemovePlace}>
+      <Modal ref={modal}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
           onConfirm={handleRemovePlace}
         />
-      </Modal_Alter>
+      </Modal>
 
       <header>
         <img src={logoImg} alt="Stylized globe" />
@@ -185,4 +168,4 @@ function PlacePicker() {
   );
 }
 
-export default PlacePicker;
+export default PlacePicker_Inspect;

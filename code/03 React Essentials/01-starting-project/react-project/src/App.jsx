@@ -11,6 +11,7 @@ import AuthInputsCssModules from './pages/AuthInputs/AuthInputsCssModules.jsx';
 import AuthInputsStyledComponent from './pages/AuthInputs/AuthInputsStyledComponent.jsx';
 import AuthInputsTailwind from './pages/AuthInputs/AuthInputsTailwind.jsx';
 import Challenges from './pages/Challenges/Challenges.jsx';
+import PlacePicker_Inspect from './pages/PlacePicker/PlacePicker_Inspect.jsx';
 import PlacePicker from './pages/PlacePicker/PlacePicker.jsx';
 
 import reactLogo from './assets/react.svg';
